@@ -1,3 +1,8 @@
-<h1>
-  {{title}}
-</h1>
+<mat-toolbar class="mat-elevation-z2" color="primary">
+  <mat-toolbar-row>
+    <span routerLink="/">{{ title }}</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>

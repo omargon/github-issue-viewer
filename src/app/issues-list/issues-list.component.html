@@ -1,0 +1,22 @@
+
+
+
+<button *ngIf="issues" [disabled]="disableNewerButton()" (click)="getNewerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
+<button *ngIf="issues" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>
+<mat-card class="list-issue" *ngFor="let issue of issues">
+  <mat-card-header>
+      <div mat-card-avatar 
+        class="header-image"
+        [style.background-image]="'url(' + issue.user.avatar_url + ')'"></div>
+      <mat-card-title><a routerLink="/detail/{{issue.number}}">{{issue.title}}</a></mat-card-title>
+      <mat-card-subtitle>#{{issue.number}} by {{issue.user.login}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{issue.body | slice:0:140}}...
+      </p>
+    </mat-card-content>
+</mat-card>
+
+<button *ngIf="issues" [disabled]="disableNewerButton()" (click)="getNewwerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
+<button *ngIf="issues" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>

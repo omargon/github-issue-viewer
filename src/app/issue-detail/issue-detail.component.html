@@ -1,0 +1,16 @@
+<mat-card *ngIf="issue" class="list-issue">
+  <mat-card-header>
+      <div mat-card-avatar 
+        class="header-image"
+        [style.background-image]="'url(' + issue.user.avatar_url + ')'"></div>
+      <mat-card-title>By {{issue.user.login}}</mat-card-title>
+      <mat-card-subtitle>{{ issue.state | uppercase }} #{{issue.number}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>{{issue.title}}</h3>
+      <mat-divider></mat-divider>
+      <markdown [data]="issue.body"></markdown>
+    </mat-card-content>
+</mat-card>
+
+<button *ngIf="issue" (click)="goBack()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon> Go Back</button>
