@@ -1,4 +1,4 @@
-# GithubIssueViewer
+# Github Issue Viewer
 
 An Angular 4 and Angular Material 2 application that displays issue results from Github.
 
