@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -31,7 +30,6 @@ import { ApiService } from './api.service';
     HttpModule,
     HttpClientModule,
     AppRoutingModule,
-    NoopAnimationsModule,
     MatToolbarModule,
     MatCardModule,
     MatListModule,
