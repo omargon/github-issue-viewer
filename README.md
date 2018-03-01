@@ -1,6 +1,6 @@
 # Github Issue Viewer
 
-An Angular 4 and Angular Material 2 application that displays issue results from Github.
+An Angular 5 and Angular Material 2 application that displays issue results from Github.
 
 ## Development Environment Setup
 
