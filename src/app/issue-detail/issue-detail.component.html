@@ -3,8 +3,12 @@
       <div mat-card-avatar 
         class="header-image"
         [style.background-image]="'url(' + issue.user.avatar_url + ')'"></div>
-      <mat-card-title>By {{issue.user.login}}</mat-card-title>
-      <mat-card-subtitle>{{ issue.state | uppercase }} #{{issue.number}}</mat-card-subtitle>
+      <mat-card-title><span>#{{issue.number}}</span> by {{issue.user.login}}</mat-card-title>
+      <mat-card-subtitle>
+          <mat-chip-list>
+              <mat-chip color="{{ issue.state === 'open' ? 'primary' : 'warn' }}" selected="true">{{ issue.state | uppercase }}</mat-chip>
+          </mat-chip-list>
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <h3>{{issue.title}}</h3>
@@ -12,5 +16,4 @@
       <markdown [data]="issue.body"></markdown>
     </mat-card-content>
 </mat-card>
-
 <button *ngIf="issue" (click)="goBack()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon> Go Back</button>

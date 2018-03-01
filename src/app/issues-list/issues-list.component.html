@@ -1,6 +1,3 @@
-
-
-
 <button *ngIf="issues" [disabled]="disableNewerButton()" (click)="getNewerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
 <button *ngIf="issues" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>
 <mat-card class="list-issue" *ngFor="let issue of issues">
@@ -17,6 +14,5 @@
       </p>
     </mat-card-content>
 </mat-card>
-
 <button *ngIf="issues" [disabled]="disableNewerButton()" (click)="getNewwerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
 <button *ngIf="issues" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>

@@ -38,14 +38,12 @@ export class IssuesListComponent implements OnInit {
     this.apiService.getIssues(this.currentPage)
     .map(issues => this.issues = issues)
     .subscribe(issues => {
-      if (issues.length == this.apiService.maxItemsPerPage) {
+      if (issues.length === this.apiService.maxItemsPerPage) {
         this.apiService.getIssues(this.currentPage + 1)
           .subscribe(nextSetOfIssues => {
-            
             if (nextSetOfIssues.length && nextSetOfIssues.length > 0 ) {
               this.moreIssuesAvailable = true;
             }
-
             console.log(this.moreIssuesAvailable);
           });
       }
@@ -53,9 +51,9 @@ export class IssuesListComponent implements OnInit {
   }
 
   disableNewerButton(): boolean {
-    return this.currentPage == 1;
+    return this.currentPage === 1;
   }
-  
+
   disableOlderButton(): boolean {
     return !this.moreIssuesAvailable;
   }
