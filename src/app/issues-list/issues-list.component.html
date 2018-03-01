@@ -1,7 +1,9 @@
-<button *ngIf="issues" [disabled]="disableNewerButton()" (click)="getNewerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
-<button *ngIf="issues" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>
-<mat-card class="list-issue" *ngFor="let issue of issues">
-  <mat-card-header>
+<mat-spinner *ngIf="!dataLoaded" class="centered"></mat-spinner>
+<button *ngIf="dataLoaded" [disabled]="disableNewerButton()" (click)="getNewerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
+<button *ngIf="dataLoaded" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>
+<div *ngIf="issues.length > 0 && dataLoaded">
+  <mat-card class="list-issue" *ngFor="let issue of issues">
+    <mat-card-header>
       <div mat-card-avatar 
         class="header-image"
         [style.background-image]="'url(' + issue.user.avatar_url + ')'"></div>
@@ -10,9 +12,19 @@
     </mat-card-header>
     <mat-card-content>
       <p>
-        {{issue.body | slice:0:140}}...
+        {{issue.body | slice:0:140}} ...
       </p>
     </mat-card-content>
-</mat-card>
-<button *ngIf="issues" [disabled]="disableNewerButton()" (click)="getNewwerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
-<button *ngIf="issues" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>
+  </mat-card>
+</div>
+<div *ngIf="issues.length === 0 && dataLoaded">
+  <mat-card class="list-issue">
+      <mat-card-content>
+          <p>
+            No data available
+          </p>
+        </mat-card-content>
+    </mat-card>      
+</div>
+<button *ngIf="dataLoaded" [disabled]="disableNewerButton()" (click)="getNewerIssues()" mat-raised-button><mat-icon>keyboard_arrow_left</mat-icon>Newer</button>
+<button *ngIf="dataLoaded" [disabled]="disableOlderButton()" (click)="getOlderIssues()" class="float-right" mat-raised-button><mat-icon>keyboard_arrow_right</mat-icon>Older</button>

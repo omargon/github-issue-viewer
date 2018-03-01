@@ -13,6 +13,7 @@ import { ApiService } from '../api.service';
 export class IssueDetailComponent implements OnInit {
 
   issue: Issue;
+  dataLoaded = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +27,12 @@ export class IssueDetailComponent implements OnInit {
 
   getIssue(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    this.dataLoaded = false;
     this.apiService.getIssue(id)
-      .subscribe(issue => this.issue = issue);
+      .subscribe(issue => {
+        this.issue = issue;
+        this.dataLoaded = true;
+      });
   }
 
   goBack(): void {

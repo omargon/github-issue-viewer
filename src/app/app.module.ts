@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app.component';
 import { IssuesListComponent } from './issues-list/issues-list.component';
@@ -36,6 +37,7 @@ import { ApiService } from './api.service';
     MatDividerModule,
     MatIconModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
     MarkdownModule.forRoot()
   ],
   providers: [ApiService],

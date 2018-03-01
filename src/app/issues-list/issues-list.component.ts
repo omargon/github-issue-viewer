@@ -15,9 +15,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class IssuesListComponent implements OnInit {
 
   issues: Issue[];
+  dataLoaded = false;
 
   private currentPage: number;
-
   private moreIssuesAvailable = false;
 
   constructor(
@@ -26,7 +26,7 @@ export class IssuesListComponent implements OnInit {
     private apiService: ApiService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.currentPage = +this.route.snapshot.paramMap.get('page');
       this.getIssues();
@@ -34,19 +34,12 @@ export class IssuesListComponent implements OnInit {
   }
 
   getIssues(): void {
-    this.issues = null;
+    this.issues = [];
+    this.dataLoaded = false;
     this.apiService.getIssues(this.currentPage)
-    .map(issues => this.issues = issues)
     .subscribe(issues => {
-      if (issues.length === this.apiService.maxItemsPerPage) {
-        this.apiService.getIssues(this.currentPage + 1)
-          .subscribe(nextSetOfIssues => {
-            if (nextSetOfIssues.length && nextSetOfIssues.length > 0 ) {
-              this.moreIssuesAvailable = true;
-            }
-            console.log(this.moreIssuesAvailable);
-          });
-      }
+      this.issues = issues;
+      this.dataLoaded = true;
     });
   }
 
@@ -55,7 +48,8 @@ export class IssuesListComponent implements OnInit {
   }
 
   disableOlderButton(): boolean {
-    return !this.moreIssuesAvailable;
+    const issuesArrayLength = this.issues.length;
+    return issuesArrayLength === 0 || issuesArrayLength < this.apiService.maxItemsPerPage;
   }
 
   getOlderIssues(): void {
@@ -65,6 +59,5 @@ export class IssuesListComponent implements OnInit {
   getNewerIssues(): void {
     this.router.navigate(['/', this.currentPage - 1]);
   }
-
 
 }
